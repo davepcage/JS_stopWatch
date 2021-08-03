@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<title>Stop Watch</title>
+</head>
+<body>
+	<h1>Stop Watch</h1>
+	<div id="timer">
+		<span class="value">00:00:00</span>    ms  
+		<br>
+		<input type="button" id="btn-comenzar" value="Comenzar"> </div>
+	<br>
+	<div id="times_result" style="background-color: yellowgreen; ">
+		
+	</div>
+	<script type="text/javascript">
+		var value
+		var stopWatch
+
+		function secondsToString(value) {
+			hh = Math.floor(value / 3600);
+			var hour = (hh < 10)? '0' + hh : hh;
+			mm = Math.floor((value / 60) % 60);
+			var minute = (mm < 10)? '0' + mm : mm;
+		    ss = value % 60;
+			var second = (ss < 10)? '0' + ss : ss;
+			return  hour + ":" + minute + ":" + second  
+		};
+
+		function start(){
+			value = 0
+			stopWatch = setInterval(updateDisplay,1000)
+			function updateDisplay() {
+			    value++;
+			     var stringTime = secondsToString(value)
+			    $(".value").html( stringTime );	
+			}
+		};
+
+		function stop(){
+			var stringTime = secondsToString(value)
+			clearInterval(stopWatch)
+			$('#timer').find('.value').text();
+			$("#times_result").append("<div>" + stringTime + "</div>");
+
+		};
+		
+		$("#btn-comenzar").on("click",function(){	
+			if($("#btn-comenzar").val() == "Comenzar"){
+				start();
+
+				$("#btn-comenzar").val("Detener");
+			}
+			else {
+				$("#btn-comenzar").val("Comenzar")
+				stop();
+				 $(".value").html( "00:00:00" );	
+			};
+		});
+	</script>
+
+</body>
+</html>
