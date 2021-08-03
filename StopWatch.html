@@ -24,7 +24,7 @@
 			var hour = (hh < 10)? '0' + hh : hh;
 			mm = Math.floor((value / 60) % 60);
 			var minute = (mm < 10)? '0' + mm : mm;
-		    ss = value % 60;
+			ss = value % 60;
 			var second = (ss < 10)? '0' + ss : ss;
 			return  hour + ":" + minute + ":" + second  
 		};
@@ -33,9 +33,9 @@
 			value = 0
 			stopWatch = setInterval(updateDisplay,1000)
 			function updateDisplay() {
-			    value++;
-			     var stringTime = secondsToString(value)
-			    $(".value").html( stringTime );	
+				value++;
+				 var stringTime = secondsToString(value)
+				$(".value").html( stringTime );	
 			}
 		};
 
